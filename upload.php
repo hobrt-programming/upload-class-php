@@ -19,6 +19,7 @@ class up
 	public $file_name;
 	public $max_size;
 	public $ext;
+	public $up_folder;
 	public $upl;
 	public $url;
 	public function upload()
@@ -29,7 +30,7 @@ class up
 			$size=$_FILES[$this->file_name]['size'];
 			$tem_name=$_FILES[$this->file_name]["tmp_name"];
 			if($err>0){
-				echo "<div class='alert alert-danger'>",$this->error['3'],"</div>";
+				return $this->error['3'];
 			}
 			else {
 				$arr=explode('.', $name);
@@ -44,15 +45,15 @@ class up
 							}
 						}
 						else {
-							echo "<div class='alert alert-danger'>",$this->error['1'],"</div>";
+							return $this->error['1'];
 						}
 					}
 					else {
-						echo "<div class='alert alert-danger'>",$this->error['2'],"</div>";
+						return $this->error['2'];
 					}
 				}
 				else {
-					echo "<div class='alert alert-danger'>",$this->error['2'],"</div>";
+					return $this->error['2'];
 				}
 			}
 	}
