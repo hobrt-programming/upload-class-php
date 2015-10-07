@@ -86,7 +86,7 @@ class up
 		$ext=end($arr);
 		//$arre=array_pop($arr);
 		$nm=$this->getkey();
-		if(file_exists($this->upl.'/'.$name)) {
+		if(file_exists($this->upl.'/'.$$nm)) {
 			return $nm.'_'.time().'.'.$ext;
 		}
 		else {
