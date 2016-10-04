@@ -36,7 +36,7 @@ class up
 				$arr=explode('.', $name);
 				$ext=end($arr);
 				if($this->ext_test($ext)){
-					if($this->mimetype_test($type)){
+					if($this->mimetype_test($tem_name)){
 						if($this->size_test($size)) {
 							$this->url=$this->rname($name);
 							$test=move_uploaded_file($tem_name, $this->upl.'/'.$this->url);
@@ -57,11 +57,15 @@ class up
 				}
 			}
 	}
-	private function mimetype_test($type){
-		if(in_array($type, $this->mime)){
+	private function mimetype_test($tmpname){
+		$finfo = finfo_open( FILEINFO_MIME_TYPE );
+		$mtype = finfo_file( $finfo, $tmpname );
+		if(in_array($mtype, $this->mime)){
+			finfo_close( $finfo );
 			return TRUE;
 		}
 		else {
+			finfo_close( $finfo );
 			return FALSE;
 		}
 	}
